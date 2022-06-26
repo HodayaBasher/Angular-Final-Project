@@ -1,0 +1,45 @@
+<div class="center">
+    <label>Sort by bank account balance (use pipe):</label>
+    <input type="text" placeholder="enter number balance"  [(ngModel)]="handlingAllBankAccountsSrv.num"/>
+    <br/>
+    <button mat-stroked-button color="primary" (click)="Open()">Open bank account</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>code:</th>
+                <th>first name:</th>
+                <th>last name:</th>
+                <th>account type:</th>
+                <th>balance:</th>
+                <th>line of credit card:</th>
+                <th>limited:</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let a of handlingAllBankAccountsSrv.num | priceComparison">
+            <tr appEdit [isEdit]="handlingAllBankAccountsSrv.addOrEdit">
+                <td>{{a.bankAccountCode}}</td>
+                <td>{{a.bankAccountFirstName}}</td>
+                <td>{{a.bankAccountLastName}}</td>
+                <td>{{a.bankAccountType}}</td>
+                <td>{{a.bankAccountBalance}}</td>
+                <td>{{a.bankAccountLineOfCredit}}</td>
+                <td> <input type="checkbox" [checked]="a.bankAccountLimited" disabled /></td>
+                <td> <button mat-stroked-button color="primary" (click)="Edit(a)">Edit</button></td>
+                <td> <button mat-stroked-button color="primary" (click)="Delete(a.bankAccountCode)">Delete</button></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="this.handlingAllBankAccountsSrv.toShow">
+        <hr />
+        <br/>
+        <h3 *ngIf="this.handlingAllBankAccountsSrv.addOrEdit">Open new bank account</h3>
+        <h3 *ngIf="!this.handlingAllBankAccountsSrv.addOrEdit">Edit bank account</h3>
+        <app-open-bank-account-form></app-open-bank-account-form>
+    </div>
+
+</div>

@@ -1,0 +1,62 @@
+<form #myForm="ngForm" (ngSubmit)="Ok()"  class="center">
+
+    <!-- מספר חשבון -->
+    <label>code: </label>
+    <input type="text" [(ngModel)]="handlingAllBankAccountsSrv.newBankAccount.bankAccountCode" name="code" id="code"
+        minlength="6" maxlength="6" required #validCode="ngModel" [disabled]="!handlingAllBankAccountsSrv.addOrEdit">
+    <br><br>
+    <div *ngIf="validCode.errors" class="error">
+        <label *ngIf="validCode.errors.required && (validCode.dirty || validCode.touched)">code is required</label><br>
+        <label *ngIf="validCode.errors.minlength">code must be 6 characters</label>
+        <label *ngIf="validCode.errors.maxlength">code must be 6 characters</label>
+    </div>
+
+    <!-- שם פרטי- בעל החשבון  -->
+    <label>First name: </label>
+    <input type="text" [(ngModel)]="handlingAllBankAccountsSrv.newBankAccount.bankAccountFirstName" name="fname"
+        id="fname" required #validFName="ngModel" />
+    <div *ngIf="validFName.errors" class="error">
+        <label *ngIf="validFName.errors.required && (validFName.dirty || validFName.touched)">first name is
+            required</label><br>
+    </div>
+    <br><br>
+
+
+    <!-- שם משפחה- בעל החשבון -->
+    <label>Last name: </label>
+    <input type="text" [(ngModel)]="handlingAllBankAccountsSrv.newBankAccount.bankAccountLastName" name="lname"
+        id="lname" required #validLName="ngModel" />
+    <div *ngIf="validLName.errors" class="error">
+        <label *ngIf="validLName.errors.required && (validLName.dirty || validLName.touched)">last name is
+            required</label><br>
+    </div>
+    <br><br>
+
+    <!-- סוג חשבון -->
+    <label>Bank account type:</label>
+    <select [(ngModel)]="handlingAllBankAccountsSrv.newBankAccount.bankAccountType" name="type" id="type">
+        <option>עו"ש</option>
+        <option>עסקי</option>
+        <option>vip</option>
+    </select>
+
+
+    <!-- מסגרת אשראי -->
+    <label>Line of credit: </label>
+    <input type="number" [(ngModel)]="handlingAllBankAccountsSrv.newBankAccount.bankAccountLineOfCredit"
+        #lineOfCredit="ngModel" name="lineOfCredit" id="lineOfCredit" required min="1000" max="5000" /><br><br>
+
+    <div *ngIf="lineOfCredit.invalid" class="error">
+        <label *ngIf="lineOfCredit.errors.required && (lineOfCredit.dirty || lineOfCredit.touched)">required</label><br>
+        <label *ngIf="lineOfCredit.errors.min">lineOfCredit must be minimum 1000 NIS</label>
+        <label *ngIf="lineOfCredit.errors.max">lineOfCredit could maximun 5000 NIS</label>
+    </div>
+
+
+    <!-- <label>Line of credit: </label>
+    <input type="checkbox" [checked]="newBankAccount.bankAccountLimited" [(ngModel)]="newBankAccount.bankAccountLimited" name="limited" id="limited"/>
+    <lable>is limited</lable> -->
+    
+    <button mat-stroked-button color="primary" type="submit" [disabled]="!myForm.valid">Save</button>
+</form>
+<p>{{newBankAccount | json}}</p>

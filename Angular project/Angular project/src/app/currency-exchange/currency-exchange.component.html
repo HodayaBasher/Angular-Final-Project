@@ -1,0 +1,36 @@
+<div class="center">
+    <form (submit)="convert(e)">
+        <p>Enter a professional name for the currency (abbreviation)</p>
+        <input type="number" placeholder="amount" [(ngModel)]="Currency.query.amount"/>
+        <input type="text" placeholder="to" [(ngModel)]="Currency.query.to"/>
+        <input type="text" placeholder="from" [(ngModel)]="Currency.query.from"/>
+        <button mat-stroked-button color="primary"(click)="convert(urrency.query)" type="submit">convert</button>
+    </form>
+
+    <p>result: {{currencyExchange.result}}</p>
+</div>
+
+
+<!-- public date?: string,
+        public historical?: boolean,
+        public info?: { quote?: number, timestamp?: number },
+        public query?: { amount?: number, from?: string, to?: string },
+        public result?: number,
+        public success?: boolean -->
+
+<!-- <mat-card class="example-card">
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card-content>
+        <p>This card has divider and indeterminate progress as footer</p>
+        <p>{{ longText }}</p>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+    </mat-card-actions>
+    <mat-card-footer>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card> -->
